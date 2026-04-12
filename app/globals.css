@@ -4,18 +4,19 @@
   --font-serif: "Playfair Display", "Georgia", serif;
   --font-sans: "Inter", "Helvetica Neue", sans-serif;
 
-  --color-cream: #FAF7F2;
-  --color-cream-dark: #F0EBE3;
-  --color-charcoal: #1A1A1A;
-  --color-charcoal-light: #2A2A2A;
-  --color-warm-gray: #8A8580;
-  --color-warm-gray-light: #B8B3AE;
-  --color-gold: #C9A84C;
-  --color-gold-light: #D4B85A;
-  --color-gold-dark: #A88B3C;
-  --color-gold-muted: #C9A84C1A;
-  --color-burgundy: #6B2D3E;
-  --color-ivory: #FFFDF8;
+  --color-cream: #F5F0E8;
+  --color-cream-dark: #E8E0D4;
+  --color-charcoal: #111111;
+  --color-charcoal-light: #1C1C1C;
+  --color-charcoal-soft: #262626;
+  --color-warm-gray: #7A756E;
+  --color-warm-gray-light: #A8A29E;
+  --color-gold: #B8963E;
+  --color-gold-light: #D4AF5A;
+  --color-gold-dark: #96792F;
+  --color-gold-muted: rgba(184, 150, 62, 0.08);
+  --color-burgundy: #5C1F2E;
+  --color-ivory: #FDFBF7;
 }
 
 @layer base {
@@ -31,6 +32,7 @@
     color: var(--color-charcoal);
     line-height: 1.7;
     letter-spacing: 0.01em;
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -49,24 +51,10 @@
   }
 
   .gold-gradient-text {
-    background: linear-gradient(135deg, #D4B85A 0%, #C9A84C 40%, #A88B3C 100%);
+    background: linear-gradient(135deg, #D4AF5A 0%, #B8963E 40%, #96792F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  .luxury-border {
-    position: relative;
-  }
-  .luxury-border::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
   }
 
   .image-shine {
@@ -80,9 +68,9 @@
     background: linear-gradient(
       105deg,
       transparent 40%,
-      rgba(255, 255, 255, 0.05) 45%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 55%,
+      rgba(255, 255, 255, 0.03) 45%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.03) 55%,
       transparent 60%
     );
     transform: translateX(-100%);
@@ -90,5 +78,12 @@
   }
   .image-shine:hover::after {
     transform: translateX(100%);
+  }
+
+  .section-divider {
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    margin: 0 auto;
   }
 }

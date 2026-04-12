@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { FullBleedImage, FadeInSection } from "@/components/ScrollReveal";
 import AnimateIn from "@/components/AnimateIn";
 import GalleryGrid from "@/components/GalleryGrid";
 import { getStorePhotos } from "@/lib/photos";
@@ -14,60 +14,46 @@ export default async function GalleryPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-[50vh] items-center overflow-hidden bg-charcoal">
-        <Image
-          src="/images/jewelry-flatlay.png"
-          alt="Jewellery collection"
-          fill
-          priority
-          className="object-cover opacity-30"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-charcoal" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-32 text-center lg:px-8">
-          <AnimateIn>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+      <FullBleedImage src="/images/jewelry-flatlay.png" alt="Collections" overlay="dark" priority>
+        <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
+          <AnimateIn delay={0.3}>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.5em] text-gold/60">
               Our Portfolio
             </p>
-            <h1 className="mt-4 font-serif text-5xl font-bold text-ivory sm:text-6xl">
+            <h1 className="mt-4 font-serif text-5xl font-bold text-ivory sm:text-7xl">
               Collections
             </h1>
-            <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
-            <p className="mx-auto mt-6 max-w-md text-base text-ivory/50">
-              Each piece tells a story of heritage, craftsmanship, and timeless beauty
+            <div className="section-divider mt-6" />
+            <p className="mx-auto mt-6 max-w-md text-ivory/40">
+              Each piece is a conversation between tradition and artistry — crafted to be worn, cherished, and passed on.
             </p>
           </AnimateIn>
         </div>
-      </section>
+      </FullBleedImage>
 
-      {/* Gallery */}
-      <section className="bg-ivory py-20">
+      <section className="bg-ivory py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <GalleryGrid photos={photos} />
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-charcoal/5 bg-cream py-20">
-        <div className="mx-auto max-w-2xl px-6 text-center lg:px-8">
-          <AnimateIn>
-            <h2 className="font-serif text-3xl font-bold text-charcoal">
-              Looking for Something Special?
-            </h2>
-            <p className="mt-4 text-warm-gray">
-              We create custom pieces tailored to your vision. Share your idea with us.
-            </p>
-            <a
-              href="https://wa.me/919425561850?text=I%20have%20a%20custom%20jewellery%20design%20in%20mind"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block bg-gold px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:bg-gold-light"
-            >
-              Discuss Your Design
-            </a>
-          </AnimateIn>
-        </div>
+      <section className="bg-charcoal py-24">
+        <FadeInSection className="mx-auto max-w-2xl px-6 text-center lg:px-8">
+          <h2 className="font-serif text-3xl font-bold text-ivory sm:text-4xl">
+            Your Design. Our Hands.
+          </h2>
+          <p className="mt-4 text-ivory/40">
+            Don&apos;t see what you&apos;re looking for? We create custom pieces from your vision.
+          </p>
+          <a
+            href="https://wa.me/919425561850?text=I%20have%20a%20custom%20jewellery%20design%20in%20mind"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-block bg-gold px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-charcoal transition-all hover:bg-gold-light"
+          >
+            Discuss Your Design
+          </a>
+        </FadeInSection>
       </section>
     </>
   );
