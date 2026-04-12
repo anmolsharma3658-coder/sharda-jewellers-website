@@ -1,21 +1,23 @@
+import Image from "next/image";
 import Link from "next/link";
+import AnimateIn from "@/components/AnimateIn";
 import RatesCard from "@/components/RatesCard";
 import { getRates } from "@/lib/rates";
 
-const CATEGORIES = [
-  { name: "Gold Jewellery", hindi: "सोने के गहने", icon: "✨", desc: "24K, 22K, 18K — Necklaces, Rings, Bangles & more" },
-  { name: "Silver Jewellery", hindi: "चाँदी के गहने", icon: "🤍", desc: "999 Fine Silver — Utensils, Gifts & Jewellery" },
-  { name: "Diamond Jewellery", hindi: "हीरे के गहने", icon: "💎", desc: "Certified diamonds in stunning designs" },
-  { name: "Bridal Sets", hindi: "ब्राइडल सेट", icon: "👰", desc: "Complete wedding collections for your special day" },
-  { name: "Custom Orders", hindi: "कस्टम ऑर्डर", icon: "🎨", desc: "Bring your design — we'll craft it for you" },
-  { name: "Gold Coins", hindi: "सोने के सिक्के", icon: "🪙", desc: "BIS Hallmarked coins for gifting & investment" },
+const COLLECTIONS = [
+  { name: "Gold Necklaces", image: "/images/hero-necklace.png", href: "/gallery" },
+  { name: "Diamond Sets", image: "/images/diamond-set.png", href: "/gallery" },
+  { name: "Bridal Collection", image: "/images/bridal-set.png", href: "/gallery" },
+  { name: "Gold Bangles", image: "/images/gold-bangles.png", href: "/gallery" },
+  { name: "Earrings & Jhumkas", image: "/images/gold-jhumka.png", href: "/gallery" },
+  { name: "Gold Rings", image: "/images/gold-rings.png", href: "/gallery" },
 ];
 
-const TRUST_BADGES = [
-  { icon: "🏛️", title: "Since 1971", desc: "50+ years of trust" },
-  { icon: "✅", title: "BIS Hallmark", desc: "Certified purity" },
-  { icon: "🏭", title: "In-House Manufacturing", desc: "Made right here" },
-  { icon: "🎨", title: "Full Customization", desc: "Your design, our craft" },
+const PROMISES = [
+  { number: "55+", label: "Years of Trust", sublabel: "Since 1971" },
+  { number: "BIS", label: "Hallmark Certified", sublabel: "Guaranteed Purity" },
+  { number: "100%", label: "Customization", sublabel: "Your Design, Our Craft" },
+  { number: "3", label: "Generations", sublabel: "Family Legacy" },
 ];
 
 export default async function Home() {
@@ -23,161 +25,382 @@ export default async function Home() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,215,0,0.08),transparent_60%)]" />
+      {/* ── Hero ── */}
+      <section className="relative flex min-h-screen items-center overflow-hidden bg-charcoal">
+        <Image
+          src="/images/hero-necklace.png"
+          alt="Exquisite gold necklace by Sharda Jewellers"
+          fill
+          priority
+          className="object-cover opacity-50"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/30" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-32">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-medium uppercase tracking-widest text-gold/80">
-              Since 1971 &middot; Bemetara, Chhattisgarh
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <AnimateIn delay={0.2} direction="none">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+              Est. 1971 &middot; Bemetara, Chhattisgarh
             </p>
-            <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Your Trusted{" "}
-              <span className="text-gold">Family Jeweller</span>
+          </AnimateIn>
+
+          <AnimateIn delay={0.4}>
+            <h1 className="mt-6 max-w-2xl font-serif text-5xl font-bold leading-[1.1] text-ivory sm:text-6xl lg:text-7xl">
+              Where Heritage
+              <br />
+              Meets <span className="gold-gradient-text">Elegance</span>
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
-              Generations change, styles evolve — but our craftsmanship and values
-              remain the same as they were on day one. Gold, Silver &amp; Diamond
-              jewellery with in-house manufacturing and full customization.
-            </p>
-            <p className="mt-2 text-sm italic text-slate-400">
-              &ldquo;पीढ़ियाँ बदलती हैं, डिज़ाइन बदलते हैं — लेकिन हमारी कारीगरी और हमारे मूल्य आज भी वही हैं।&rdquo;
-            </p>
+          </AnimateIn>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+          <AnimateIn delay={0.6}>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-ivory/60">
+              Three generations of master craftsmen creating timeless jewellery.
+              Gold, Silver &amp; Diamonds — crafted with devotion, worn with pride.
+            </p>
+          </AnimateIn>
+
+          <AnimateIn delay={0.8}>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="/gallery"
+                className="group inline-flex items-center gap-2 bg-gold px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:bg-gold-light"
+              >
+                View Collections
+                <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
               <a
                 href="https://wa.me/919425561850?text=Hello%20Sharda%20Jewellers!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 font-medium text-white transition hover:bg-green-500"
+                className="inline-flex items-center gap-2 border border-ivory/20 px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-ivory transition-all hover:border-ivory/40 hover:bg-ivory/5"
               >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 0 0 .917.918l4.462-1.496A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.586l-.386-.238-2.65.888.889-2.648-.238-.387A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                </svg>
-                Chat on WhatsApp
+                Book Appointment
               </a>
+            </div>
+          </AnimateIn>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-ivory/30">Scroll</span>
+            <div className="h-12 w-px bg-gradient-to-b from-ivory/30 to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Promises / Stats ── */}
+      <section className="border-b border-charcoal/5 bg-ivory py-20">
+        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 lg:grid-cols-4 lg:px-8">
+          {PROMISES.map((p, i) => (
+            <AnimateIn key={p.label} delay={i * 0.1} direction="up">
+              <div className="text-center">
+                <p className="font-serif text-4xl font-bold text-gold sm:text-5xl">{p.number}</p>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-charcoal">
+                  {p.label}
+                </p>
+                <p className="mt-1 text-xs text-warm-gray">{p.sublabel}</p>
+              </div>
+            </AnimateIn>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Collections Grid ── */}
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mb-16 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+                Curated for You
+              </p>
+              <h2 className="mt-3 font-serif text-4xl font-bold text-charcoal sm:text-5xl">
+                Our Collections
+              </h2>
+              <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            </div>
+          </AnimateIn>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {COLLECTIONS.map((col, i) => (
+              <AnimateIn key={col.name} delay={i * 0.08}>
+                <Link href={col.href} className="image-shine group relative block aspect-[4/5] overflow-hidden bg-charcoal">
+                  <Image
+                    src={col.image}
+                    alt={col.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <h3 className="font-serif text-xl font-semibold text-ivory">
+                      {col.name}
+                    </h3>
+                    <span className="mt-2 inline-block text-[11px] uppercase tracking-[0.2em] text-gold opacity-0 transition-all duration-300 group-hover:opacity-100">
+                      Explore &rarr;
+                    </span>
+                  </div>
+                </Link>
+              </AnimateIn>
+            ))}
+          </div>
+
+          <AnimateIn>
+            <div className="mt-12 text-center">
               <Link
-                href="/rates"
-                className="inline-flex items-center gap-2 rounded-full border border-gold/30 px-6 py-3 font-medium text-gold transition hover:bg-gold/10"
+                href="/gallery"
+                className="inline-flex items-center gap-2 border border-charcoal/20 px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:border-gold hover:text-gold"
               >
-                🪙 Today&apos;s Rates
+                View All Collections
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
+      {/* ── Craftsmanship ── */}
+      <section className="overflow-hidden bg-charcoal">
+        <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
+          <div className="relative aspect-square lg:aspect-auto">
+            <Image
+              src="/images/craftsman.png"
+              alt="Master craftsman at work"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+          <div className="flex items-center px-6 py-20 lg:px-16">
+            <div>
+              <AnimateIn direction="right">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+                  The Art of Jewellery
+                </p>
+                <h2 className="mt-4 font-serif text-4xl font-bold leading-tight text-ivory sm:text-5xl">
+                  Crafted by Hand,
+                  <br />
+                  <span className="text-gold">Perfected by Time</span>
+                </h2>
+                <p className="mt-6 text-base leading-relaxed text-ivory/60">
+                  Every piece that leaves our workshop carries the dedication of master artisans
+                  who have honed their craft across generations. We don&apos;t just make jewellery —
+                  we create heirlooms that tell your family&apos;s story.
+                </p>
+                <blockquote className="mt-8 border-l-2 border-gold/30 pl-6 italic text-ivory/40">
+                  &ldquo;जो गहना आपकी यादों में बसे, वो सिर्फ यहीं बनता है।&rdquo;
+                  <br />
+                  <span className="mt-1 block text-xs not-italic text-gold/60">
+                    The jewellery that lives in your memories — is made only here.
+                  </span>
+                </blockquote>
+                <div className="mt-10">
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-gold transition-colors hover:text-gold-light"
+                  >
+                    Our Story
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </AnimateIn>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Live Rates */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            Live Gold &amp; Silver Rates
-          </h2>
-          <p className="mt-2 text-slate-400">Updated every 30 minutes with Indian taxes included</p>
-        </div>
-        <div className="mx-auto max-w-3xl">
-          <RatesCard rates={rates} />
-        </div>
-        <div className="mt-6 text-center">
-          <Link href="/rates" className="text-sm text-gold/80 transition hover:text-gold">
-            View full rate details &rarr;
-          </Link>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="border-y border-gold/10 bg-navy-light/50 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-10 text-center">
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">Our Collections</h2>
-            <p className="mt-2 text-slate-400">From everyday elegance to bridal grandeur</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((cat) => (
-              <div
-                key={cat.name}
-                className="group rounded-xl border border-gold/10 bg-navy p-6 transition hover:border-gold/30 hover:bg-navy-light"
+      {/* ── Live Rates ── */}
+      <section className="bg-ivory py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mb-12 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+                Updated Every 30 Minutes
+              </p>
+              <h2 className="mt-3 font-serif text-4xl font-bold text-charcoal sm:text-5xl">
+                Today&apos;s Rates
+              </h2>
+              <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <RatesCard rates={rates} />
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="mt-8 text-center">
+              <Link
+                href="/rates"
+                className="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold transition-colors hover:text-gold-dark"
               >
-                <span className="text-3xl">{cat.icon}</span>
-                <h3 className="mt-3 text-lg font-semibold text-white">{cat.name}</h3>
-                <p className="text-xs text-gold/60">{cat.hindi}</p>
-                <p className="mt-2 text-sm text-slate-400">{cat.desc}</p>
+                View Detailed Rates &rarr;
+              </Link>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
+      {/* ── Featured Pieces ── */}
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mb-16 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+                Handpicked
+              </p>
+              <h2 className="mt-3 font-serif text-4xl font-bold text-charcoal sm:text-5xl">
+                Featured Pieces
+              </h2>
+              <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            </div>
+          </AnimateIn>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            <AnimateIn delay={0} className="md:row-span-2">
+              <div className="image-shine group relative h-full min-h-[500px] overflow-hidden bg-charcoal">
+                <Image
+                  src="/images/jewelry-flatlay.png"
+                  alt="Gold jewellery collection"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Everyday Elegance</p>
+                  <h3 className="mt-1 font-serif text-xl text-ivory">Mangalsutra &amp; Chains</h3>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </AnimateIn>
 
-      {/* Trust Badges */}
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TRUST_BADGES.map((badge) => (
-              <div key={badge.title} className="text-center">
-                <span className="text-4xl">{badge.icon}</span>
-                <h3 className="mt-2 font-bold text-white">{badge.title}</h3>
-                <p className="text-sm text-slate-400">{badge.desc}</p>
+            <AnimateIn delay={0.1}>
+              <div className="image-shine group relative aspect-square overflow-hidden bg-charcoal">
+                <Image
+                  src="/images/gold-coins.png"
+                  alt="24K Gold coins"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Investment</p>
+                  <h3 className="mt-1 font-serif text-xl text-ivory">24K Gold Coins</h3>
+                </div>
               </div>
-            ))}
+            </AnimateIn>
+
+            <AnimateIn delay={0.15}>
+              <div className="image-shine group relative aspect-square overflow-hidden bg-charcoal">
+                <Image
+                  src="/images/silver-items.png"
+                  alt="Silver gift items"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Gifting</p>
+                  <h3 className="mt-1 font-serif text-xl text-ivory">Silver Collectibles</h3>
+                </div>
+              </div>
+            </AnimateIn>
+
+            <AnimateIn delay={0.2} className="md:col-span-2">
+              <div className="image-shine group relative aspect-[2/1] overflow-hidden bg-charcoal">
+                <Image
+                  src="/images/bridal-set.png"
+                  alt="Bridal jewellery set"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Bridal</p>
+                  <h3 className="mt-1 font-serif text-xl text-ivory">Complete Wedding Collection</h3>
+                </div>
+              </div>
+            </AnimateIn>
           </div>
         </div>
       </section>
 
-      {/* Legacy / Story */}
-      <section className="border-t border-gold/10 bg-navy-light/30 py-16">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <h2 className="text-2xl font-bold text-gold sm:text-3xl">Our Legacy</h2>
-          <blockquote className="mt-6 text-lg leading-relaxed text-slate-300">
-            &ldquo;In 1971, when there wasn&apos;t a single jewellery shop in this area — we were here.
-            Your grandparents came to us, and today, so do you. That is our true identity.
-            Generations change, trends evolve, designs transform — but our craftsmanship and
-            our values remain the same as they were on the very first day.&rdquo;
-          </blockquote>
-          <p className="mt-4 text-sm italic text-slate-400">
-            सन् 1971 से, जब इस इलाके में गहनों की कोई दुकान तक नहीं थी — हम थे।
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/about"
-              className="text-sm font-medium text-gold transition hover:text-gold-dark"
-            >
-              Read our full story &rarr;
-            </Link>
-          </div>
+      {/* ── Legacy Quote ── */}
+      <section className="relative overflow-hidden bg-charcoal py-32">
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/craftsman.png"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="rounded-2xl border border-gold/20 bg-gradient-to-r from-navy-light to-navy p-8 text-center sm:p-12">
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">
-              Visit Us Today
-            </h2>
-            <p className="mx-auto mt-3 max-w-lg text-slate-400">
-              Come see our collection in person. Custom orders welcome — bring your design,
-              we&apos;ll bring it to life.
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center lg:px-8">
+          <AnimateIn>
+            <div className="mx-auto mb-6 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <blockquote className="font-serif text-2xl leading-relaxed text-ivory/80 sm:text-3xl">
+              &ldquo;In 1971, when there wasn&apos;t a single jewellery shop in this area — we were here.
+              Your grandparents came to us, and today, so do you.
+              That is our true identity.&rdquo;
+            </blockquote>
+            <p className="mt-8 text-sm italic text-ivory/30">
+              सन् 1971 से, जब इस इलाके में गहनों की कोई दुकान तक नहीं थी — हम थे।
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 border border-gold/30 px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-gold transition-all hover:bg-gold hover:text-charcoal"
+              >
+                Read Our Story
+              </Link>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="bg-ivory py-24">
+        <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
+          <AnimateIn>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+              Begin Your Journey
+            </p>
+            <h2 className="mt-4 font-serif text-4xl font-bold text-charcoal sm:text-5xl">
+              Let Us Create Something
+              <br />
+              <span className="text-gold">Beautiful for You</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-md text-base text-warm-gray">
+              Visit our store, call us, or start a WhatsApp conversation.
+              Custom orders welcome — bring your vision, we&apos;ll bring it to life.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <a
                 href="https://wa.me/919425561850?text=Hello%20Sharda%20Jewellers!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-green-600 px-6 py-3 font-medium text-white transition hover:bg-green-500"
+                className="bg-gold px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:bg-gold-light"
               >
-                WhatsApp Us
+                Start a Conversation
               </a>
               <a
                 href="tel:+919425561850"
-                className="rounded-full border border-gold/30 px-6 py-3 font-medium text-gold transition hover:bg-gold/10"
+                className="border border-charcoal/20 px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:border-gold hover:text-gold"
               >
                 Call +91 94255 61850
               </a>
             </div>
-          </div>
+          </AnimateIn>
         </div>
       </section>
     </>

@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-gold: #FFD700;
-  --color-gold-dark: #B8860B;
-  --color-gold-light: #FFF8DC;
-  --color-navy: #0f172a;
-  --color-navy-light: #1e293b;
-  --color-navy-lighter: #334155;
-  --font-sans: var(--font-geist-sans);
+@theme {
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "Inter", "Helvetica Neue", sans-serif;
+
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F0EBE3;
+  --color-charcoal: #1A1A1A;
+  --color-charcoal-light: #2A2A2A;
+  --color-warm-gray: #8A8580;
+  --color-warm-gray-light: #B8B3AE;
+  --color-gold: #C9A84C;
+  --color-gold-light: #D4B85A;
+  --color-gold-dark: #A88B3C;
+  --color-gold-muted: #C9A84C1A;
+  --color-burgundy: #6B2D3E;
+  --color-ivory: #FFFDF8;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-ivory);
+  }
 }
 
-body {
-  background: var(--color-navy);
-  color: #e2e8f0;
-  font-family: var(--font-sans), system-ui, sans-serif;
-}
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
 
-::selection {
-  background: var(--color-gold);
-  color: var(--color-navy);
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #D4B85A 0%, #C9A84C 40%, #A88B3C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .luxury-border {
+    position: relative;
+  }
+  .luxury-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  }
+
+  .image-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .image-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 55%,
+      transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .image-shine:hover::after {
+    transform: translateX(100%);
+  }
 }

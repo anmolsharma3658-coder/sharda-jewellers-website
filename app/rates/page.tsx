@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import AnimateIn from "@/components/AnimateIn";
 import { getRates } from "@/lib/rates";
 
 export const metadata: Metadata = {
   title: "Live Gold & Silver Rates",
-  description: "Today's live gold and silver rates in India with import duty and GST included. 24K, 22K, 18K gold and 999 silver prices.",
+  description: "Today's live gold and silver rates in India with import duty and GST included.",
 };
 
 function fmt(n: number) {
@@ -15,155 +17,190 @@ export default async function RatesPage() {
 
   if (!rates) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
-        <h1 className="text-3xl font-bold text-white">Live Rates</h1>
-        <p className="mt-4 text-lg text-slate-400">
-          Rates are currently unavailable. Please try again later or call the store.
-        </p>
-        <a
-          href="tel:+919425561850"
-          className="mt-6 inline-block rounded-full bg-gold px-6 py-3 font-medium text-navy transition hover:bg-gold-dark"
-        >
-          Call +91 94255 61850
-        </a>
+      <div className="flex min-h-[60vh] items-center justify-center bg-ivory">
+        <div className="px-6 text-center">
+          <h1 className="font-serif text-3xl font-bold text-charcoal">Live Rates</h1>
+          <p className="mt-4 text-warm-gray">Rates are currently unavailable. Please try again later.</p>
+          <a
+            href="tel:+919425561850"
+            className="mt-6 inline-block bg-gold px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:bg-gold-light"
+          >
+            Call for Rates
+          </a>
+        </div>
       </div>
     );
   }
 
   const goldRows = [
-    { purity: "24K (999)", gram: rates.gold24kPerGram, ten: rates.gold24kPer10Gram, desc: "Pure gold — investment grade" },
-    { purity: "22K (916)", gram: rates.gold22kPerGram, ten: rates.gold22kPer10Gram, desc: "Most popular for jewellery" },
-    { purity: "18K (750)", gram: rates.gold18kPerGram, ten: rates.gold18kPer10Gram, desc: "Diamond settings & modern designs" },
+    { purity: "24 Karat", badge: "999", gram: rates.gold24kPerGram, ten: rates.gold24kPer10Gram, use: "Investment & Pure Gold" },
+    { purity: "22 Karat", badge: "916", gram: rates.gold22kPerGram, ten: rates.gold22kPer10Gram, use: "Traditional Jewellery" },
+    { purity: "18 Karat", badge: "750", gram: rates.gold18kPerGram, ten: rates.gold18kPer10Gram, use: "Diamond Settings" },
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-white sm:text-4xl">
-          Today&apos;s Gold &amp; Silver Rates
-        </h1>
-        <p className="mt-2 text-slate-400">
-          India retail prices with Import Duty ({rates.importDuty}%) + GST ({rates.gst}%) included
-        </p>
-        <p className="mt-1 text-sm italic text-gold/60">
-          आज के सोने-चाँदी के भाव (भारत)
-        </p>
-        <p className="mt-3 text-xs text-slate-500">
-          Last updated: {rates.updatedAt} &middot; Auto-refreshes every 30 minutes
-        </p>
-      </div>
-
-      {/* Gold Table */}
-      <div className="mb-8 overflow-hidden rounded-2xl border border-gold/20 bg-navy-light">
-        <div className="border-b border-gold/10 bg-gold/5 px-6 py-4">
-          <h2 className="text-xl font-bold text-gold">✨ Gold Rates</h2>
+    <>
+      {/* Hero */}
+      <section className="relative flex min-h-[45vh] items-center bg-charcoal">
+        <Image
+          src="/images/gold-coins.png"
+          alt="Gold coins"
+          fill
+          priority
+          className="object-cover opacity-25"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-transparent to-charcoal" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 py-32 text-center lg:px-8">
+          <AnimateIn>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
+              Updated Every 30 Minutes
+            </p>
+            <h1 className="mt-4 font-serif text-5xl font-bold text-ivory sm:text-6xl">
+              Today&apos;s Rates
+            </h1>
+            <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <p className="mx-auto mt-6 max-w-md text-sm text-ivory/40">
+              India retail prices &middot; Import Duty ({rates.importDuty}%) + GST ({rates.gst}%) included
+              &middot; Last updated: {rates.updatedAt}
+            </p>
+          </AnimateIn>
         </div>
+      </section>
 
-        {/* Desktop table */}
-        <div className="hidden sm:block">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-slate-700/50 text-left text-sm text-slate-400">
-                <th className="px-6 py-3 font-medium">Purity</th>
-                <th className="px-6 py-3 font-medium">Per Gram</th>
-                <th className="px-6 py-3 font-medium">Per 10 Grams</th>
-                <th className="px-6 py-3 font-medium">Use</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-700/30">
-              {goldRows.map((row) => (
-                <tr key={row.purity} className="transition hover:bg-navy/30">
-                  <td className="px-6 py-4 font-semibold text-white">{row.purity}</td>
-                  <td className="px-6 py-4 text-lg font-bold text-gold">&#x20B9;{fmt(row.gram)}</td>
-                  <td className="px-6 py-4 text-white">&#x20B9;{fmt(row.ten)}</td>
-                  <td className="px-6 py-4 text-sm text-slate-400">{row.desc}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Gold Rates */}
+      <section className="bg-ivory py-24">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mb-12 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">Precious Metal</p>
+              <h2 className="mt-3 font-serif text-3xl font-bold text-charcoal sm:text-4xl">Gold Rates</h2>
+              <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+            </div>
+          </AnimateIn>
+
+          <div className="grid gap-6 sm:grid-cols-3">
+            {goldRows.map((row, i) => (
+              <AnimateIn key={row.purity} delay={i * 0.1}>
+                <div className="border border-charcoal/10 bg-white p-8 text-center transition-all hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5">
+                  <span className="inline-block rounded-full bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gold">
+                    {row.badge}
+                  </span>
+                  <h3 className="mt-4 font-serif text-xl font-bold text-charcoal">{row.purity}</h3>
+                  <div className="my-6">
+                    <p className="font-serif text-4xl font-bold text-charcoal">
+                      &#x20B9;{fmt(row.gram)}
+                    </p>
+                    <p className="mt-1 text-xs text-warm-gray-light">per gram</p>
+                  </div>
+                  <div className="border-t border-charcoal/5 pt-4">
+                    <p className="text-lg font-semibold text-charcoal">&#x20B9;{fmt(row.ten)}</p>
+                    <p className="text-xs text-warm-gray-light">per 10 grams</p>
+                  </div>
+                  <p className="mt-6 text-xs text-warm-gray">{row.use}</p>
+                </div>
+              </AnimateIn>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Mobile cards */}
-        <div className="divide-y divide-slate-700/30 sm:hidden">
-          {goldRows.map((row) => (
-            <div key={row.purity} className="px-6 py-4">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-white">{row.purity}</span>
-                <span className="text-lg font-bold text-gold">&#x20B9;{fmt(row.gram)}/g</span>
+      {/* Silver Rates */}
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <AnimateIn>
+            <div className="mb-12 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.4em] text-warm-gray">Fine Metal</p>
+              <h2 className="mt-3 font-serif text-3xl font-bold text-charcoal sm:text-4xl">Silver Rates</h2>
+              <div className="mx-auto mt-4 h-px w-16 bg-gradient-to-r from-transparent via-warm-gray-light to-transparent" />
+            </div>
+          </AnimateIn>
+
+          <AnimateIn delay={0.1}>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="border border-charcoal/10 bg-white p-8 text-center transition-all hover:border-gold/20">
+                <span className="inline-block rounded-full bg-warm-gray/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-warm-gray">
+                  999 Fine
+                </span>
+                <p className="mt-6 font-serif text-4xl font-bold text-charcoal">
+                  &#x20B9;{fmt(rates.silverPerGram)}
+                </p>
+                <p className="mt-1 text-xs text-warm-gray-light">per gram</p>
               </div>
-              <div className="mt-1 flex items-center justify-between">
-                <span className="text-xs text-slate-500">{row.desc}</span>
-                <span className="text-sm text-slate-400">&#x20B9;{fmt(row.ten)}/10g</span>
+              <div className="border border-charcoal/10 bg-white p-8 text-center transition-all hover:border-gold/20">
+                <span className="inline-block rounded-full bg-warm-gray/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-warm-gray">
+                  999 Fine
+                </span>
+                <p className="mt-6 font-serif text-4xl font-bold text-charcoal">
+                  &#x20B9;{fmt(rates.silverPerKg)}
+                </p>
+                <p className="mt-1 text-xs text-warm-gray-light">per kilogram</p>
               </div>
             </div>
-          ))}
+          </AnimateIn>
         </div>
-      </div>
+      </section>
 
-      {/* Silver Table */}
-      <div className="mb-8 overflow-hidden rounded-2xl border border-slate-600/30 bg-navy-light">
-        <div className="border-b border-slate-600/20 bg-slate-700/10 px-6 py-4">
-          <h2 className="text-xl font-bold text-slate-200">🤍 Silver Rates</h2>
+      {/* Tax Info */}
+      <section className="bg-ivory py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <AnimateIn>
+            <div className="border border-charcoal/10 bg-white">
+              <div className="border-b border-charcoal/5 p-6 text-center">
+                <h3 className="font-serif text-xl font-bold text-charcoal">Price Composition</h3>
+              </div>
+              <div className="grid gap-px bg-charcoal/5 sm:grid-cols-3">
+                <div className="bg-white p-6 text-center">
+                  <p className="font-serif text-3xl font-bold text-gold">{rates.importDuty}%</p>
+                  <p className="mt-2 text-sm font-medium text-charcoal">Import Duty</p>
+                </div>
+                <div className="bg-white p-6 text-center">
+                  <p className="font-serif text-3xl font-bold text-gold">{rates.gst}%</p>
+                  <p className="mt-2 text-sm font-medium text-charcoal">GST</p>
+                </div>
+                <div className="bg-white p-6 text-center">
+                  <p className="font-serif text-3xl font-bold text-gold">Varies</p>
+                  <p className="mt-2 text-sm font-medium text-charcoal">Making Charges</p>
+                </div>
+              </div>
+              <div className="border-t border-charcoal/5 p-6 text-center">
+                <p className="text-xs text-warm-gray">
+                  Rates shown include international spot price + import duty + GST.
+                  Making charges are additional and depend on design complexity. Visit the store for final pricing.
+                </p>
+              </div>
+            </div>
+          </AnimateIn>
         </div>
-        <div className="grid divide-y divide-slate-700/30 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-          <div className="px-6 py-5">
-            <p className="text-sm text-slate-400">999 Fine Silver — Per Gram</p>
-            <p className="mt-1 text-2xl font-bold text-white">&#x20B9;{fmt(rates.silverPerGram)}</p>
-          </div>
-          <div className="px-6 py-5">
-            <p className="text-sm text-slate-400">999 Fine Silver — Per Kilogram</p>
-            <p className="mt-1 text-2xl font-bold text-white">&#x20B9;{fmt(rates.silverPerKg)}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Tax Breakdown */}
-      <div className="rounded-2xl border border-gold/10 bg-navy-light p-6">
-        <h3 className="mb-4 font-bold text-white">Tax Breakdown</h3>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <div className="rounded-xl bg-navy/50 p-4 text-center">
-            <p className="text-2xl font-bold text-gold">{rates.importDuty}%</p>
-            <p className="text-sm text-slate-400">Import Duty</p>
-            <p className="text-xs text-slate-500">Budget 2026</p>
-          </div>
-          <div className="rounded-xl bg-navy/50 p-4 text-center">
-            <p className="text-2xl font-bold text-gold">{rates.gst}%</p>
-            <p className="text-sm text-slate-400">GST</p>
-            <p className="text-xs text-slate-500">On precious metals</p>
-          </div>
-          <div className="rounded-xl bg-navy/50 p-4 text-center">
-            <p className="text-2xl font-bold text-gold">Extra</p>
-            <p className="text-sm text-slate-400">Making Charges</p>
-            <p className="text-xs text-slate-500">Varies by design</p>
-          </div>
-        </div>
-        <p className="mt-4 text-center text-xs text-slate-500">
-          Rates shown are India retail prices (international spot + import duty + GST).
-          Making charges are additional and vary based on the design complexity.
-          Visit the store for final pricing.
-        </p>
-      </div>
+      </section>
 
       {/* CTA */}
-      <div className="mt-10 text-center">
-        <p className="text-slate-400">Want to know the exact price for a piece?</p>
-        <div className="mt-4 flex flex-wrap justify-center gap-4">
-          <a
-            href="https://wa.me/919425561850?text=I%20want%20to%20know%20today's%20exact%20jewellery%20prices"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-green-600 px-6 py-3 font-medium text-white transition hover:bg-green-500"
-          >
-            Ask on WhatsApp
-          </a>
-          <a
-            href="tel:+919425561850"
-            className="rounded-full border border-gold/30 px-6 py-3 font-medium text-gold transition hover:bg-gold/10"
-          >
-            Call the Store
-          </a>
+      <section className="bg-charcoal py-20">
+        <div className="mx-auto max-w-3xl px-6 text-center lg:px-8">
+          <AnimateIn>
+            <h2 className="font-serif text-3xl font-bold text-ivory">Want an Exact Quote?</h2>
+            <p className="mt-4 text-ivory/50">
+              Tell us the piece you&apos;re interested in and we&apos;ll give you the exact price.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://wa.me/919425561850?text=I%20want%20a%20price%20quote%20for%20jewellery"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gold px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all hover:bg-gold-light"
+              >
+                Get a Quote on WhatsApp
+              </a>
+              <a
+                href="tel:+919425561850"
+                className="border border-ivory/20 px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.2em] text-ivory transition-all hover:border-ivory/40"
+              >
+                Call the Store
+              </a>
+            </div>
+          </AnimateIn>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

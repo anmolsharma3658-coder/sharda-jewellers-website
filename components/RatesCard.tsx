@@ -1,67 +1,92 @@
-import { Rates } from "@/lib/rates";
+"use client";
+
+type Rates = {
+  gold24kPerGram: number;
+  gold22kPerGram: number;
+  gold18kPerGram: number;
+  gold24kPer10Gram: number;
+  gold22kPer10Gram: number;
+  gold18kPer10Gram: number;
+  silverPerGram: number;
+  silverPerKg: number;
+  importDuty: number;
+  gst: number;
+  updatedAt: string;
+} | null;
 
 function fmt(n: number) {
   return n.toLocaleString("en-IN");
 }
 
-export default function RatesCard({ rates }: { rates: Rates | null }) {
+export default function RatesCard({ rates }: { rates: Rates }) {
   if (!rates) {
     return (
-      <div className="rounded-2xl border border-gold/20 bg-navy-light p-6 text-center">
-        <p className="text-slate-400">Live rates are currently unavailable.</p>
-        <p className="mt-1 text-sm text-slate-500">Please call the store for today&apos;s prices.</p>
+      <div className="border border-charcoal/10 bg-cream p-12 text-center">
+        <p className="text-warm-gray">Rates currently unavailable.</p>
+        <a href="tel:+919425561850" className="mt-2 inline-block text-sm text-gold hover:text-gold-dark">
+          Call for today&apos;s rates
+        </a>
       </div>
     );
   }
 
+  const rows = [
+    { label: "24K Gold", gram: rates.gold24kPerGram, ten: rates.gold24kPer10Gram },
+    { label: "22K Gold", gram: rates.gold22kPerGram, ten: rates.gold22kPer10Gram },
+    { label: "18K Gold", gram: rates.gold18kPerGram, ten: rates.gold18kPer10Gram },
+  ];
+
   return (
-    <div className="overflow-hidden rounded-2xl border border-gold/20 bg-navy-light">
-      <div className="border-b border-gold/10 bg-gold/5 px-6 py-4">
-        <h3 className="text-lg font-bold text-gold">Today&apos;s Gold &amp; Silver Rates</h3>
-        <p className="text-xs text-slate-400">
-          Import Duty ({rates.importDuty}%) + GST ({rates.gst}%) included &middot; Updated {rates.updatedAt}
-        </p>
-      </div>
-
-      <div className="divide-y divide-slate-700/50">
-        <div className="px-6 py-4">
-          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gold/80">Gold</h4>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              { label: "24K (999)", gram: rates.gold24kPerGram, ten: rates.gold24kPer10Gram },
-              { label: "22K (916)", gram: rates.gold22kPerGram, ten: rates.gold22kPer10Gram },
-              { label: "18K (750)", gram: rates.gold18kPerGram, ten: rates.gold18kPer10Gram },
-            ].map((row) => (
-              <div key={row.label} className="rounded-xl bg-navy/50 p-3">
-                <p className="text-xs text-slate-400">{row.label}</p>
-                <p className="text-lg font-bold text-white">
-                  &#x20B9;{fmt(row.gram)}<span className="text-xs font-normal text-slate-400">/g</span>
-                </p>
-                <p className="text-xs text-slate-500">&#x20B9;{fmt(row.ten)} / 10g</p>
-              </div>
-            ))}
-          </div>
+    <div className="overflow-hidden border border-charcoal/10 bg-white">
+      {/* Gold */}
+      <div className="border-b border-charcoal/5 p-8">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="h-px flex-1 bg-gradient-to-r from-gold/30 to-transparent" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gold">Gold</h3>
+          <div className="h-px flex-1 bg-gradient-to-l from-gold/30 to-transparent" />
         </div>
-
-        <div className="px-6 py-4">
-          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">Silver</h4>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl bg-navy/50 p-3">
-              <p className="text-xs text-slate-400">999 Fine</p>
-              <p className="text-lg font-bold text-white">
-                &#x20B9;{fmt(rates.silverPerGram)}<span className="text-xs font-normal text-slate-400">/g</span>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {rows.map((r) => (
+            <div key={r.label} className="text-center">
+              <p className="text-xs font-medium uppercase tracking-wider text-warm-gray">
+                {r.label}
               </p>
+              <p className="mt-2 font-serif text-3xl font-bold text-charcoal">
+                &#x20B9;{fmt(r.gram)}
+              </p>
+              <p className="mt-1 text-xs text-warm-gray-light">per gram</p>
             </div>
-            <div className="rounded-xl bg-navy/50 p-3">
-              <p className="text-xs text-slate-400">Per Kg</p>
-              <p className="text-lg font-bold text-white">&#x20B9;{fmt(rates.silverPerKg)}</p>
-            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Silver */}
+      <div className="p-8">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="h-px flex-1 bg-gradient-to-r from-warm-gray-light/50 to-transparent" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.3em] text-warm-gray">Silver</h3>
+          <div className="h-px flex-1 bg-gradient-to-l from-warm-gray-light/50 to-transparent" />
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="text-center">
+            <p className="text-xs font-medium uppercase tracking-wider text-warm-gray">999 Fine Silver</p>
+            <p className="mt-2 font-serif text-3xl font-bold text-charcoal">&#x20B9;{fmt(rates.silverPerGram)}</p>
+            <p className="mt-1 text-xs text-warm-gray-light">per gram</p>
+          </div>
+          <div className="text-center">
+            <p className="text-xs font-medium uppercase tracking-wider text-warm-gray">999 Fine Silver</p>
+            <p className="mt-2 font-serif text-3xl font-bold text-charcoal">&#x20B9;{fmt(rates.silverPerKg)}</p>
+            <p className="mt-1 text-xs text-warm-gray-light">per kilogram</p>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-gold/10 px-6 py-3 text-center text-xs text-slate-500">
-        Making charges extra &middot; Visit store for final price
+      {/* Footer */}
+      <div className="border-t border-charcoal/5 bg-cream/50 px-8 py-4 text-center">
+        <p className="text-[10px] text-warm-gray">
+          Incl. Import Duty ({rates.importDuty}%) + GST ({rates.gst}%) &middot;
+          Making charges extra &middot; Updated {rates.updatedAt}
+        </p>
       </div>
     </div>
   );
