@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,21 +32,33 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="group" onClick={() => setOpen(false)}>
-          <span
-            className={`font-serif text-xl font-bold tracking-wide transition-colors duration-300 sm:text-2xl ${
-              scrolled ? "text-charcoal" : "text-ivory"
-            }`}
-          >
-            SHARDA
-          </span>
-          <span
-            className={`ml-1.5 text-[10px] font-medium uppercase tracking-[0.3em] transition-colors duration-300 sm:text-xs ${
-              scrolled ? "text-gold" : "text-gold-light"
-            }`}
-          >
-            Jewellers
-          </span>
+        <Link href="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
+          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gold/40 bg-ivory/70">
+            <Image
+              src="/sharda-logo.png"
+              alt="Sharda Jewellers logo"
+              fill
+              className="object-cover"
+              sizes="40px"
+              priority
+            />
+          </div>
+          <div>
+            <span
+              className={`font-serif text-xl font-bold tracking-wide transition-colors duration-300 sm:text-2xl ${
+                scrolled ? "text-charcoal" : "text-ivory"
+              }`}
+            >
+              SHARDA
+            </span>
+            <span
+              className={`ml-1.5 text-[10px] font-medium uppercase tracking-[0.3em] transition-colors duration-300 sm:text-xs ${
+                scrolled ? "text-gold" : "text-gold-light"
+              }`}
+            >
+              Jewellers
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}

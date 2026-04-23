@@ -18,6 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.shardazaveri.com"),
   title: {
     default: "Sharda Jewellers — Since 1971 | Bemetara",
     template: "%s | Sharda Jewellers",
@@ -34,6 +35,19 @@ export const metadata: Metadata = {
     description: "Three generations of trust in gold, silver & diamond jewellery.",
     type: "website",
     locale: "en_IN",
+    images: [
+      {
+        url: "/sharda-logo.png",
+        alt: "Sharda Jewellers logo",
+      },
+    ],
+  },
+  icons: {
+    icon: [
+      { url: "/icon", type: "image/png" },
+      { url: "/sharda-logo.png", type: "image/png" },
+    ],
+    apple: [{ url: "/sharda-logo.png", type: "image/png" }],
   },
 };
 
