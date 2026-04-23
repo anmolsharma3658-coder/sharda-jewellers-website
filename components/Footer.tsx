@@ -66,7 +66,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://wa.me/919425561850"
+                href="https://wa.me/919137761477"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-ivory"

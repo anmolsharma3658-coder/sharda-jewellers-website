@@ -159,7 +159,7 @@ export default async function RatesPage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
             <a
-              href="https://wa.me/919425561850?text=I%20want%20a%20price%20quote"
+              href="https://wa.me/919137761477?text=I%20want%20a%20price%20quote"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gold px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-charcoal transition-all hover:bg-gold-light"

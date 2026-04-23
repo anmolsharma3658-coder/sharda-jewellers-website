@@ -147,7 +147,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
             <a
-              href="https://wa.me/919425561850"
+              href="https://wa.me/919137761477"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gold px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-charcoal transition-all hover:bg-gold-light"

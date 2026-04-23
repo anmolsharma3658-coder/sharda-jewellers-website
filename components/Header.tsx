@@ -78,7 +78,7 @@ export default function Header() {
             </Link>
           ))}
           <a
-            href="https://wa.me/919425561850"
+            href="https://wa.me/919137761477"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 border border-gold/40 px-5 py-2 text-[12px] font-medium uppercase tracking-[0.15em] text-gold transition-all duration-300 hover:bg-gold hover:text-ivory"
@@ -147,7 +147,7 @@ export default function Header() {
                 transition={{ delay: 0.5 }}
               >
                 <a
-                  href="https://wa.me/919425561850"
+                  href="https://wa.me/919137761477"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}

@@ -43,7 +43,7 @@ export default function ContactPage() {
                   AI-powered assistant available 24/7
                 </p>
                 <a
-                  href="https://wa.me/919425561850?text=Hello%20Sharda%20Jewellers!"
+                  href="https://wa.me/919137761477?text=Hello%20Sharda%20Jewellers!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-block bg-gold px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-charcoal transition-all hover:bg-gold-light"

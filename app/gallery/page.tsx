@@ -46,7 +46,7 @@ export default async function GalleryPage() {
             Don&apos;t see what you&apos;re looking for? We create custom pieces from your vision.
           </p>
           <a
-            href="https://wa.me/919425561850?text=I%20have%20a%20custom%20jewellery%20design%20in%20mind"
+            href="https://wa.me/919137761477?text=I%20have%20a%20custom%20jewellery%20design%20in%20mind"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 inline-block bg-gold px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-charcoal transition-all hover:bg-gold-light"

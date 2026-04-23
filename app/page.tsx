@@ -53,7 +53,7 @@ export default async function Home() {
                 </svg>
               </Link>
               <a
-                href="https://wa.me/919425561850"
+                href="https://wa.me/919137761477"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-ivory/15 px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-ivory/80 transition-all duration-300 hover:border-ivory/30 hover:text-ivory"
@@ -234,7 +234,7 @@ export default async function Home() {
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
               <a
-                href="https://wa.me/919425561850?text=Hello%20Sharda%20Jewellers!"
+                href="https://wa.me/919137761477?text=Hello%20Sharda%20Jewellers!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gold px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-charcoal transition-all duration-300 hover:bg-gold-light"
