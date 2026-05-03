@@ -3,10 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import { FullBleedImage, FadeInSection, ScaleImage } from "@/components/ScrollReveal";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Our Story",
-  description: "Sharda Jewellers — your trusted family jeweller since 1971 in Bemetara, Chhattisgarh.",
+  title: "Our Story — Three Generations in Bemetara",
+  description:
+    "Since 1971 Sharda Jewellers has served Bemetara and Chhattisgarh with trusted gold, silver and diamond jewellery, in-house manufacturing and BIS hallmarking.",
+  alternates: { canonical: new URL("/about", SITE_URL).toString() },
+  openGraph: {
+    title: "Our Story | Sharda Jewellers Bemetara Since 1971",
+    url: new URL("/about", SITE_URL).toString(),
+  },
 };
 
 const MILESTONES = [

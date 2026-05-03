@@ -3,10 +3,17 @@ import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import { FullBleedImage, FadeInSection } from "@/components/ScrollReveal";
 import { getRates } from "@/lib/rates";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Live Gold & Silver Rates",
-  description: "Today's live gold and silver rates in India with import duty and GST included.",
+  title: "Live Gold & Silver Rates in Bemetara",
+  description:
+    "Today’s gold and silver rates for India (duty and GST included), published by Sharda Jewellers Bemetara — useful for buyers across Chhattisgarh planning purchases.",
+  alternates: { canonical: new URL("/rates", SITE_URL).toString() },
+  openGraph: {
+    title: "Live Gold & Silver Rates | Sharda Jewellers Bemetara",
+    url: new URL("/rates", SITE_URL).toString(),
+  },
 };
 
 function fmt(n: number) {

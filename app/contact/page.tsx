@@ -1,16 +1,28 @@
 import type { Metadata } from "next";
 import AnimateIn from "@/components/AnimateIn";
 import { FullBleedImage, FadeInSection } from "@/components/ScrollReveal";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with Sharda Jewellers, Bemetara. Call, WhatsApp, or visit us in store.",
+  title: "Contact — Visit or WhatsApp Bemetara Jewellers",
+  description:
+    "Call or WhatsApp Sharda Jewellers in Bemetara, Chhattisgarh for gold rates, bridal jewellery and custom orders. Store hours, directions and AI assistant on WhatsApp.",
+  alternates: { canonical: new URL("/contact", SITE_URL).toString() },
+  openGraph: {
+    title: "Contact Sharda Jewellers | Bemetara",
+    url: new URL("/contact", SITE_URL).toString(),
+  },
 };
 
 export default function ContactPage() {
   return (
     <>
-      <FullBleedImage src="/images/gold-rings.png" alt="Contact us" overlay="dark" priority>
+      <FullBleedImage
+        src="/images/gold-rings.png"
+        alt="Contact Sharda Jewellers — gold jewellers in Bemetara, Chhattisgarh for calls and WhatsApp"
+        overlay="dark"
+        priority
+      >
         <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
           <AnimateIn delay={0.3}>
             <p className="text-[10px] font-semibold uppercase tracking-[0.5em] text-gold/60">Get in Touch</p>

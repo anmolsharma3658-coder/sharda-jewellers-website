@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
@@ -6,6 +7,11 @@ import GenerationalStory from "@/components/GenerationalStory";
 import CustomizationJourney from "@/components/CustomizationJourney";
 import { FullBleedImage, ScaleImage, FadeInSection } from "@/components/ScrollReveal";
 import { getRates } from "@/lib/rates";
+import { SITE_URL } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  alternates: { canonical: new URL("/", SITE_URL).toString() },
+};
 
 const HERITAGE = [
   { name: "Marathi Mala", hindi: "मराठी माला", image: "/images/marathi-mala.png", desc: "Traditional silver temple necklace" },
@@ -22,7 +28,12 @@ export default async function Home() {
   return (
     <>
       {/* ═══ Chapter 1: The Opening ═══ */}
-      <FullBleedImage src="/images/hero-necklace.png" alt="Sharda Jewellers hero" overlay="gradient-left" priority>
+      <FullBleedImage
+        src="/images/hero-necklace.png"
+        alt="22K gold bridal necklace at Sharda Jewellers — trusted gold jewellers in Bemetara, Chhattisgarh since 1971"
+        overlay="gradient-left"
+        priority
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimateIn delay={0.3} direction="none">
             <p className="text-[10px] font-semibold uppercase tracking-[0.5em] text-gold/80">

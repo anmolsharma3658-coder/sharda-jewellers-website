@@ -3,10 +3,19 @@ import { FullBleedImage, FadeInSection } from "@/components/ScrollReveal";
 import AnimateIn from "@/components/AnimateIn";
 import GalleryGrid from "@/components/GalleryGrid";
 import { getStorePhotos } from "@/lib/photos";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Collections",
-  description: "Browse our curated collection of gold, silver, diamond and bridal jewellery from Sharda Jewellers.",
+  title: "Gold & Diamond Jewellery Collections",
+  description:
+    "Browse gold, silver, diamond and bridal jewellery at Sharda Jewellers, Bemetara — in-house craftsmanship, hallmark pieces and custom orders for Chhattisgarh.",
+  alternates: { canonical: new URL("/gallery", SITE_URL).toString() },
+  openGraph: {
+    title: "Jewellery Collections | Sharda Jewellers Bemetara",
+    description:
+      "Gold necklaces, bangles, bridal sets and diamond jewellery from family jewellers in Bemetara since 1971.",
+    url: new URL("/gallery", SITE_URL).toString(),
+  },
 };
 
 export default async function GalleryPage() {
@@ -14,7 +23,12 @@ export default async function GalleryPage() {
 
   return (
     <>
-      <FullBleedImage src="/images/jewelry-flatlay.png" alt="Collections" overlay="dark" priority>
+      <FullBleedImage
+        src="/images/jewelry-flatlay.png"
+        alt="Gold and diamond jewellery collection at Sharda Jewellers, Bemetara jewellers showroom"
+        overlay="dark"
+        priority
+      >
         <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
           <AnimateIn delay={0.3}>
             <p className="text-[10px] font-semibold uppercase tracking-[0.5em] text-gold/60">

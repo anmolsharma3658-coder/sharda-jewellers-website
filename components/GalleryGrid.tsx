@@ -3,28 +3,29 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IMAGE_ALT_SUFFIX } from "@/lib/seo";
 
 type Photo = { url: string; alt: string };
 
 const CURATED: Photo[] = [
-  { url: "/images/hero-necklace.png", alt: "Gold Kundan Necklace" },
-  { url: "/images/rani-haar.png", alt: "Rani Haar — Bridal Necklace" },
-  { url: "/images/diamond-set.png", alt: "Diamond Necklace & Earrings" },
-  { url: "/images/bridal-set.png", alt: "Complete Bridal Collection" },
-  { url: "/images/gold-mohar.png", alt: "Gold Mohar Pendant" },
-  { url: "/images/gold-bangles.png", alt: "Gold Meenakari Bangles" },
-  { url: "/images/lakchha-beri.png", alt: "Lakchha Beri — Twisted Bangles" },
-  { url: "/images/gold-jhumka.png", alt: "Gold Jhumka Earrings" },
-  { url: "/images/maang-tikka.png", alt: "Kundan Maang Tikka" },
-  { url: "/images/kamarband.png", alt: "Gold Kamarband — Waist Chain" },
-  { url: "/images/marathi-mala.png", alt: "Marathi Mala — Silver Temple Necklace" },
-  { url: "/images/gold-rings.png", alt: "Gold Rings Collection" },
-  { url: "/images/gold-coins.png", alt: "24K Gold Lakshmi Coins" },
-  { url: "/images/silver-payal.png", alt: "Silver Payal — Anklets" },
-  { url: "/images/silver-bichhiya.png", alt: "Silver Bichhiya — Toe Rings" },
-  { url: "/images/silver-items.png", alt: "Silver Puja Thali Set" },
-  { url: "/images/jewelry-flatlay.png", alt: "Mangalsutra & Gold Chains" },
-  { url: "/images/gold-macro.png", alt: "Gold Filigree Detail" },
+  { url: "/images/hero-necklace.png", alt: `Gold Kundan necklace${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/rani-haar.png", alt: `Rani haar bridal gold necklace${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/diamond-set.png", alt: `Diamond necklace and earrings set${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/bridal-set.png", alt: `Bridal gold jewellery collection${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/gold-mohar.png", alt: `Gold mohar pendant${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/gold-bangles.png", alt: `Gold meenakari bangles${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/lakchha-beri.png", alt: `Lakchha beri twisted gold bangles${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/gold-jhumka.png", alt: `Gold jhumka earrings${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/maang-tikka.png", alt: `Kundan maang tikka${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/kamarband.png", alt: `Gold kamarband waist chain${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/marathi-mala.png", alt: `Marathi mala silver temple necklace${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/gold-rings.png", alt: `Gold rings for women and men${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/gold-coins.png", alt: `24K gold Lakshmi coins${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/silver-payal.png", alt: `Silver payal anklets${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/silver-bichhiya.png", alt: `Silver bichhiya toe rings${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/silver-items.png", alt: `Silver puja thali gift set${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/jewelry-flatlay.png", alt: `Mangalsutra and gold chains${IMAGE_ALT_SUFFIX}` },
+  { url: "/images/gold-macro.png", alt: `Gold filigree craftsmanship detail${IMAGE_ALT_SUFFIX}` },
 ];
 
 export default function GalleryGrid({ photos }: { photos: string[] }) {
@@ -32,7 +33,10 @@ export default function GalleryGrid({ photos }: { photos: string[] }) {
 
   const allPhotos: Photo[] = [
     ...CURATED,
-    ...photos.map((url, i) => ({ url, alt: `Collection piece ${i + 1}` })),
+    ...photos.map((url, i) => ({
+      url,
+      alt: `Gold and diamond jewellery photo ${i + 1} from Sharda Jewellers showroom, Bemetara Chhattisgarh`,
+    })),
   ];
 
   return (
