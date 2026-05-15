@@ -1,7 +1,7 @@
 const GOLD_URL = "https://api.gold-api.com/price/XAU/INR";
 const SILVER_URL = "https://api.gold-api.com/price/XAG/INR";
 const TROY_OZ_TO_GRAM = 31.1035;
-const IMPORT_DUTY = 5.0;
+const IMPORT_DUTY = 15.0;
 const GST = 3.0;
 const DUTY_MULT = (1 + IMPORT_DUTY / 100) * (1 + GST / 100);
 
